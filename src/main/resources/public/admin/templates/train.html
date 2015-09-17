@@ -1,0 +1,47 @@
+<div ui-view>
+    <div>
+        <form ng-submit="tc.addTrain()">
+            <label class="control-label" for="number">车次</label>
+            <input class="form-control" type="text" id="number" name="number" ng-model="tc.number">
+            <label class="control-label" for="start">始发站</label>
+            <input class="form-control" type="text" id="start" name="start" ng-model="tc.start">
+            <label class="control-label" for="end">到达站</label>
+            <input class="form-control" type="text" id="end" name="end" ng-model="tc.end">
+            <label class="control-label" for="depart-time">出发时间</label>
+            <input class="form-control" type="time" id="depart-time" name="depart-time" ng-model="tc.departTime">
+            <label class="control-label" for="arrival-time">到达时间</label>
+            <input class="form-control" type="time" id="arrival-time" name="arrival-time" ng-model="tc.arrivalTime">
+            <button type="submit" class="btn btn-primary">添加</button>
+        </form>
+    </div>
+
+    <div class="alert alert-info" ng-if="tc.loading">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Loading</strong> ...
+    </div>
+    <table class="table table-striped table-hover" ng-if="!tc.loading">
+        <thead>
+        <tr>
+            <th>车次</th>
+            <th>始发站</th>
+            <th>到达站</th>
+            <th>出发时间</th>
+            <th>到达时间</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="train in tc.trains">
+            <td>{{train.number}}</td>
+            <td>{{train.start}}</td>
+            <td>{{train.end}}</td>
+            <td>{{train.departTime}}</td>
+            <td>{{train.arrivalTime}}</td>
+            <td>
+                <a href="" ng-click="tc.removeTrain(train.number)"><i class="glyphicon glyphicon-trash"></i></a>
+                <a href="" ui-sref="train.ticket({number: train.number})"><i class="glyphicon glyphicon-calendar"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

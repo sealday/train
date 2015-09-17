@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>火车票管理</title>
+    <link href="../libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+</head>
+
+<body ng-app="train">
+<div class="container">
+
+    <header>
+        <h1>火车票管理</h1>
+        <p>这里是火车票管理</p>
+    </header>
+
+    <ul class="nav nav-tabs">
+        <li ui-sref-active="active"><a href ui-sref="home">首页</a></li>
+        <li ui-sref-active="active"><a href ui-sref="train">列车管理</a></li>
+    </ul>
+
+    <div ui-view></div>
+
+</div>
+<script src="../libs/jquery/dist/jquery.min.js"></script>
+<script src="../libs/angular/angular.min.js"></script>
+<script src="../libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
