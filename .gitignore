@@ -2,3 +2,6 @@
 /src/main/resources/public/libs
 /.idea
 /target
+/.settings/
+/.classpath
+/.project
