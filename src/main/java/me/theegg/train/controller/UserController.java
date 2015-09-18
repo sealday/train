@@ -1,5 +1,6 @@
 package me.theegg.train.controller;
 
+import me.theegg.train.model.Tessera;
 import me.theegg.train.model.User;
 import me.theegg.train.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UserController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<User> getUser() {
-
         return userRepository.findAll();
     }
+
 }

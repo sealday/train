@@ -1,0 +1,27 @@
+<div>
+    <table class="table table-striped table-hover">
+    	<thead>
+    		<tr>
+    			<th>订单状态</th>
+				<th>座别</th>
+				<th>订票日期</th>
+				<th>出发站</th>
+				<th>目的站</th>
+				<th>出发日期</th>
+				<th></th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr ng-repeat="tessera in uc.tesseras track by $index">
+    			<td>{{tessera.tesseraStatus | tesseraStatus }}</td>
+				<td>{{tessera.seatType | seatType}}</td>
+				<td>{{tessera.datetime | date}}</td>
+				<td>{{tessera.ticket.train.start}}</td>
+				<td>{{tessera.ticket.train.end}}</td>
+				<td>{{tessera.ticket.departDate}}</td>
+				<td><a href ng-click="uc.returnTessera(tessera)">退票</a></td>
+    		</tr>
+    	</tbody>
+    </table>
+	<pre>{{uc.tesseras | json}}</pre>
+</div>

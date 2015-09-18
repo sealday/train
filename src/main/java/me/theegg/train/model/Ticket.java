@@ -134,7 +134,6 @@ public class Ticket {
                 ", firstClass=" + firstClass +
                 ", secondClass=" + secondClass +
                 ", standing=" + standing +
-                ", train=" + train +
                 ", departDate=" + departDate +
                 '}';
     }

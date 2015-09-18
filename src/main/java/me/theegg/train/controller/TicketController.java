@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by seal on 9/16/15.
@@ -53,15 +50,37 @@ public class TicketController {
     }
 
     @RequestMapping(value = "/buy", method = RequestMethod.POST)
-    public void buyTicket(@RequestParam("id") Ticket ticket, @RequestParam("type") Tessera.SeatType seatType, User user) {
-        System.out.println(user);
+    public void buyTicket(@RequestBody HashMap<String, String> map, User user) {
+        Long ticketId = Long.parseLong(map.get("ticket"));
+        Tessera.SeatType seatType = Tessera.SeatType.valueOf(map.get("seatType"));
+        Ticket ticket = ticketRepository.findOne(ticketId);
         Tessera tessera = new Tessera();
-        tessera.setDatetime(new Date());
-        tessera.setTicket(ticket);
-        tessera.setUser(user);
         tessera.setSeatType(seatType);
-        tesseraRepository.save(tessera);
+        tessera.setTicket(ticket);
+        tessera.setDatetime(new Date());
+        tessera.setUser(user);
+        tessera = tesseraRepository.save(tessera);
         user.getTesseras().add(tessera);
         userRepository.save(user);
+    }
+
+    /**
+     * 获得用户购买的票
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/tesseras", method = RequestMethod.GET)
+    public List<Tessera> getTesseras(User user) {
+        return tesseraRepository.findByUser(user);
+    }
+
+    /**
+     *
+     * 取消订单
+     */
+    @RequestMapping(value = "/tesseras/{id}", method = RequestMethod.DELETE)
+    public void returnTessera(@PathVariable("id") Tessera tessera) {
+        tessera.setTesseraStatus(Tessera.TesseraStatus.RETURNED);
+        tesseraRepository.save(tessera);
     }
 }

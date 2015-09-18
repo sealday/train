@@ -11,6 +11,7 @@ import java.util.Date;
 public class Tessera {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToOne
