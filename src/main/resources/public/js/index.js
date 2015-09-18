@@ -264,6 +264,26 @@
             }, function(){
 
             });
+        var startDate = new Date();
+        startDate.setDate(startDate.getDate());
+        var endDate = new Date();
+        endDate.setDate(endDate.getDate());
+        $http
+            .get('/api/trains/tesseras/search', {
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                },
+                headers: {
+                    token: user.token
+                }
+            })
+            .then(function(response){
+                console.log('--- between ---');
+                console.log(response.data);
+            }, function(){
+
+            });
         vm.returnTessera = returnTessera;
 
         function returnTessera(tessera) {

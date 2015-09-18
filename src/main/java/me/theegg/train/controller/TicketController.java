@@ -75,6 +75,17 @@ public class TicketController {
     }
 
     /**
+     * 查询
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/tesseras/search", method = RequestMethod.GET)
+    public List<Tessera> searchTesseras(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+                                        @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date endDate,User user) {
+        return tesseraRepository.findByUserAndDatetimeBetween(user, startDate, endDate);
+    }
+
+    /**
      *
      * 取消订单
      */
